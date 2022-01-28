@@ -1,13 +1,14 @@
 ## Process
 1. To include the subscription data, in `routes/web.php` changed `all()` to `with('subscription')->get()`
 This would include the "createdAt" and "updatedAt" fields of the subscription data, which likely aren't very useful for this, so I modified it to `with('subscription:id,name,price')` to only grab those columns.
+I initially created a controller, but decided against it when I realized that there wasn't really any logic or modifying of the data to be done, just a single request.
 2. (&3.) Created a simple view using a Laravel blade template, which routes to http://localhost:3000/app.
 `App.js` includes the elements needed for React to work without needing to set up build scripts, compile jsx, etc. which seemed overkill for a small project.
 Fetch the data from the API, then pass it into the App component, which sorts, flips, and renders the data as MemberRow components to a table, as well as the average price.
 Added a `catch()` to the fetch chain, which displays an ErrorBlock component to the user in case of a network error.
 
 ## Notes
-Including React for a project this small is obviously a bit silly, but I like working with it helps with the rendering of elements, and if we wanted to add interactivity (i.e. different sorting conditions) to the table it wouldn't be a chore.
+Including React for a project this small is obviously a bit silly, but I like working with it, it helps with the rendering of elements, and if we wanted to add interactivity (i.e. different sorting conditions) to the table it wouldn't be a chore.
 All-in-all this was a fun little project, I had never used Lumen or even Laravel before, but it seems to share a lot of DNA with Symfony so I picked it up quickly after flipping through the docs.
 I'm just glad nothing went wrong with the composer or docker commands during install, that tends to be the most painful part of a project!
 
