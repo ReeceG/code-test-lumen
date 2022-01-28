@@ -14,6 +14,10 @@
 */
 
 $router->get('/members', function () use ($router) {
-    $members = App\Models\Member::all();
+    $members = App\Models\Member::with('subscription:id,name,price')->get();
     return response()->json(['error' => false, 'data' => $members]);
+});
+
+$router->get('/app', function () use ($router) {
+    return view('app');
 });
